@@ -2,6 +2,8 @@
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -18,15 +20,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnStopAirPlay: Button
     private lateinit var btnAbout: Button
 
-    external fun nativeReceiverVersion(): String
-    external fun nativeStartReceiver()
-    external fun nativeStopReceiver()
-    external fun nativeIsRunning(): Boolean
-    external fun nativeStatusText(): String
+    private val nativeBridge = NativeReceiverBridge()
 
-    companion object {
-        init {
-            System.loadLibrary("airallan_native")
+    private val uiHandler = Handler(Looper.getMainLooper())
+    private val statusUpdater = object : Runnable {
+        override fun run() {
+            updateUiState()
+            uiHandler.postDelayed(this, 500)
         }
     }
 
@@ -44,10 +44,8 @@ class MainActivity : AppCompatActivity() {
 
         deviceNameText.text = "Nome do receptor: Air Állan Mirroring"
 
-        updateUiState()
-
         btnStartAirPlay.setOnClickListener {
-            nativeStartReceiver()
+            nativeBridge.startReceiver()
 
             val intent = Intent(this, AirPlayReceiverService::class.java).apply {
                 action = AirPlayReceiverService.ACTION_START
@@ -55,12 +53,11 @@ class MainActivity : AppCompatActivity() {
             ContextCompat.startForegroundService(this, intent)
 
             updateUiState()
-
             Toast.makeText(this, "Receptor iniciado", Toast.LENGTH_SHORT).show()
         }
 
         btnStopAirPlay.setOnClickListener {
-            nativeStopReceiver()
+            nativeBridge.stopReceiver()
 
             val intent = Intent(this, AirPlayReceiverService::class.java).apply {
                 action = AirPlayReceiverService.ACTION_STOP
@@ -68,32 +65,37 @@ class MainActivity : AppCompatActivity() {
             startService(intent)
 
             updateUiState()
-
             Toast.makeText(this, "Receptor parado", Toast.LENGTH_SHORT).show()
         }
 
         btnAbout.setOnClickListener {
             val msg = """
                 Air Állan Mirroring
-                Versão 0.5.0
+                Versão 0.6.0
                 
                 Fase atual:
-                Core nativo com start/stop/status
+                Core nativo AirPlay-ready
             """.trimIndent()
 
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
         }
 
+        updateUiState()
         btnStartAirPlay.requestFocus()
     }
 
     override fun onResume() {
         super.onResume()
-        updateUiState()
+        uiHandler.post(statusUpdater)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        uiHandler.removeCallbacks(statusUpdater)
     }
 
     private fun updateUiState() {
-        val running = nativeIsRunning()
+        val running = nativeBridge.isRunning()
 
         statusText.text = if (running) {
             "Status: receptor AirPlay iniciado"
@@ -102,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         nativeStatusText.text =
-            "${nativeReceiverVersion()}\n${nativeStatusText()}"
+            "${nativeBridge.receiverVersion()}\n${nativeBridge.statusText()}"
 
         if (running) {
             btnStartAirPlay.text = "Receptor iniciado"
