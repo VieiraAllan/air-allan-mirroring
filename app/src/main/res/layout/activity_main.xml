@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101010"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Air Állan Mirroring"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status: aguardando início"
+        android:textColor="#CCCCCC"
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/deviceNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome do receptor: Air Állan Mirroring"
+        android:textColor="#AAAAAA"
+        android:textSize="16sp"
+        android:layout_marginBottom="28dp" />
+
+    <FrameLayout
+        android:id="@+id/videoContainer"
+        android:layout_width="320dp"
+        android:layout_height="180dp"
+        android:background="#000000"
+        android:layout_marginBottom="28dp" />
+
+    <Button
+        android:id="@+id/btnStartAirPlay"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="Iniciar receptor AirPlay"
+        android:nextFocusDown="@id/btnStopAirPlay"
+        android:layout_marginBottom="14dp" />
+
+    <Button
+        android:id="@+id/btnStopAirPlay"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="Parar receptor"
+        android:enabled="false"
+        android:nextFocusUp="@id/btnStartAirPlay"
+        android:nextFocusDown="@id/btnAbout"
+        android:layout_marginBottom="14dp" />
+
+    <Button
+        android:id="@+id/btnAbout"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="Sobre"
+        android:nextFocusUp="@id/btnStopAirPlay" />
+
+</LinearLayout>
