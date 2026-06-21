@@ -1,0 +1,1 @@
+C:\Dev\AirAllanMirroring\app\build\intermediates\cxx\Debug\70425w2u\obj\arm64-v8a

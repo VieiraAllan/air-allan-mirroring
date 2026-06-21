@@ -33,7 +33,16 @@
         android:text="Nome do receptor: Air Állan Mirroring"
         android:textColor="#AAAAAA"
         android:textSize="16sp"
-        android:layout_marginBottom="28dp" />
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/nativeStatusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Core nativo não carregado"
+        android:textColor="#66FF99"
+        android:textSize="15sp"
+        android:layout_marginBottom="24dp" />
 
     <FrameLayout
         android:id="@+id/videoContainer"

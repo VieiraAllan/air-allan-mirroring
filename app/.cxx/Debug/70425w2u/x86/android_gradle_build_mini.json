@@ -1,0 +1,27 @@
+{
+  "buildFiles": [
+    "C:\\Dev\\AirAllanMirroring\\app\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Dev\\android-sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Dev\\AirAllanMirroring\\app\\.cxx\\Debug\\70425w2u\\x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Dev\\android-sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Dev\\AirAllanMirroring\\app\\.cxx\\Debug\\70425w2u\\x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "airallan_native::@6890427a1f51a3e7e1df": {
+      "artifactName": "airallan_native",
+      "abi": "x86",
+      "output": "C:\\Dev\\AirAllanMirroring\\app\\build\\intermediates\\cxx\\Debug\\70425w2u\\obj\\x86\\libairallan_native.so",
+      "runtimeFiles": []
+    }
+  }
+}

@@ -1,0 +1,3 @@
+C:/Dev/AirAllanMirroring/app/.cxx/Debug/70425w2u/x86/CMakeFiles/airallan_native.dir
+C:/Dev/AirAllanMirroring/app/.cxx/Debug/70425w2u/x86/CMakeFiles/edit_cache.dir
+C:/Dev/AirAllanMirroring/app/.cxx/Debug/70425w2u/x86/CMakeFiles/rebuild_cache.dir

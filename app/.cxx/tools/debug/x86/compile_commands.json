@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Dev/AirAllanMirroring/app/.cxx/Debug/70425w2u/x86",
+  "command": "C:\\Dev\\android-sdk\\ndk\\26.1.10909125\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=i686-none-linux-android26 --sysroot=C:/Dev/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dairallan_native_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles\\airallan_native.dir\\native_receiver_stub.cpp.o -c C:\\Dev\\AirAllanMirroring\\app\\src\\main\\cpp\\native_receiver_stub.cpp",
+  "file": "C:\\Dev\\AirAllanMirroring\\app\\src\\main\\cpp\\native_receiver_stub.cpp"
+}
+]
