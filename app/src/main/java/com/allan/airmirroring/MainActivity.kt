@@ -18,9 +18,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnStopAirPlay: Button
     private lateinit var btnAbout: Button
 
-    private var receiverRunning = false
-
     external fun nativeReceiverVersion(): String
+    external fun nativeStartReceiver()
+    external fun nativeStopReceiver()
+    external fun nativeIsRunning(): Boolean
+    external fun nativeStatusText(): String
 
     companion object {
         init {
@@ -41,29 +43,30 @@ class MainActivity : AppCompatActivity() {
         btnAbout = findViewById(R.id.btnAbout)
 
         deviceNameText.text = "Nome do receptor: Air Állan Mirroring"
-        nativeStatusText.text = nativeReceiverVersion()
 
         updateUiState()
 
         btnStartAirPlay.setOnClickListener {
+            nativeStartReceiver()
+
             val intent = Intent(this, AirPlayReceiverService::class.java).apply {
                 action = AirPlayReceiverService.ACTION_START
             }
             ContextCompat.startForegroundService(this, intent)
 
-            receiverRunning = true
             updateUiState()
 
             Toast.makeText(this, "Receptor iniciado", Toast.LENGTH_SHORT).show()
         }
 
         btnStopAirPlay.setOnClickListener {
+            nativeStopReceiver()
+
             val intent = Intent(this, AirPlayReceiverService::class.java).apply {
                 action = AirPlayReceiverService.ACTION_STOP
             }
             startService(intent)
 
-            receiverRunning = false
             updateUiState()
 
             Toast.makeText(this, "Receptor parado", Toast.LENGTH_SHORT).show()
@@ -72,10 +75,10 @@ class MainActivity : AppCompatActivity() {
         btnAbout.setOnClickListener {
             val msg = """
                 Air Állan Mirroring
-                Versão 0.4.0
+                Versão 0.5.0
                 
                 Fase atual:
-                Pipeline nativo JNI/CMake preparado
+                Core nativo com start/stop/status
             """.trimIndent()
 
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
@@ -84,16 +87,30 @@ class MainActivity : AppCompatActivity() {
         btnStartAirPlay.requestFocus()
     }
 
+    override fun onResume() {
+        super.onResume()
+        updateUiState()
+    }
+
     private fun updateUiState() {
-        if (receiverRunning) {
-            statusText.text = "Status: receptor AirPlay iniciado"
+        val running = nativeIsRunning()
+
+        statusText.text = if (running) {
+            "Status: receptor AirPlay iniciado"
+        } else {
+            "Status: aguardando início"
+        }
+
+        nativeStatusText.text =
+            "${nativeReceiverVersion()}\n${nativeStatusText()}"
+
+        if (running) {
             btnStartAirPlay.text = "Receptor iniciado"
             btnStartAirPlay.isEnabled = false
 
             btnStopAirPlay.text = "Parar receptor"
             btnStopAirPlay.isEnabled = true
         } else {
-            statusText.text = "Status: aguardando início"
             btnStartAirPlay.text = "Iniciar receptor AirPlay"
             btnStartAirPlay.isEnabled = true
 

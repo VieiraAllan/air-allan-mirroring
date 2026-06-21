@@ -17,8 +17,6 @@ class AirPlayReceiverService : Service() {
         private const val NOTIFICATION_ID = 1001
     }
 
-    private var isRunning = false
-
     override fun onCreate() {
         super.onCreate()
         createNotificationChannel()
@@ -26,22 +24,20 @@ class AirPlayReceiverService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
-            ACTION_START -> startReceiver()
-            ACTION_STOP -> stopReceiver()
+            ACTION_START -> {
+                startForeground(
+                    NOTIFICATION_ID,
+                    buildNotification("Receptor AirPlay ativo")
+                )
+            }
+
+            ACTION_STOP -> {
+                stopForeground(STOP_FOREGROUND_REMOVE)
+                stopSelf()
+            }
         }
+
         return START_STICKY
-    }
-
-    private fun startReceiver() {
-        if (isRunning) return
-        isRunning = true
-        startForeground(NOTIFICATION_ID, buildNotification("Receptor AirPlay ativo"))
-    }
-
-    private fun stopReceiver() {
-        isRunning = false
-        stopForeground(STOP_FOREGROUND_REMOVE)
-        stopSelf()
     }
 
     private fun buildNotification(text: String): Notification {
