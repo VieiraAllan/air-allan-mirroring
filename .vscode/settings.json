@@ -1,0 +1,6 @@
+{
+  "C_Cpp.default.compilerPath": "C:/Dev/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe",
+  "C_Cpp.default.intelliSenseMode": "windows-clang-x64",
+  "C_Cpp.default.cppStandard": "c++17",
+  "C_Cpp.default.cStandard": "c17"
+}

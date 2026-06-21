@@ -1,3 +1,9 @@
 # ninja log v5
 2	1378	8037548091825625	CMakeFiles/airallan_native.dir/native_receiver_stub.cpp.o	34255bc3a4aec654
 1398	1606	8037548094084225	C:/Dev/AirAllanMirroring/app/build/intermediates/cxx/Debug/70425w2u/obj/armeabi-v7a/libairallan_native.so	280f6b2a97395578
+4	1175	8037592715983756	CMakeFiles/airallan_native.dir/native_receiver_stub.cpp.o	34255bc3a4aec654
+1176	1420	8037592718525366	C:/Dev/AirAllanMirroring/app/build/intermediates/cxx/Debug/70425w2u/obj/armeabi-v7a/libairallan_native.so	280f6b2a97395578
+21	1246	8037609159670845	CMakeFiles/airallan_native.dir/native_receiver_stub.cpp.o	34255bc3a4aec654
+1247	1489	8037609162101887	C:/Dev/AirAllanMirroring/app/build/intermediates/cxx/Debug/70425w2u/obj/armeabi-v7a/libairallan_native.so	280f6b2a97395578
+6	1218	8037640649139784	CMakeFiles/airallan_native.dir/native_receiver_stub.cpp.o	34255bc3a4aec654
+1220	1486	8037640651925381	C:/Dev/AirAllanMirroring/app/build/intermediates/cxx/Debug/70425w2u/obj/armeabi-v7a/libairallan_native.so	280f6b2a97395578
